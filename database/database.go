@@ -1,7 +1,7 @@
 package database
 
 import (
-	"context"
+	//"context"
 	"jerrybook/ent"
 	"log"
 	"os"
@@ -28,9 +28,9 @@ func Connect(){
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer Client.Close()
+	//defer Client.Close()
 
-	if err := Client.Schema.Create(context.Background()); err != nil {
+	/*if err := Client.Schema.Create(context.Background()); err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
-	}
+	}*/
 }
