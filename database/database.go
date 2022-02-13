@@ -1,23 +1,23 @@
 package database
 
 import (
-	//"context"
 	"jerrybook/ent"
 	"log"
 	"os"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 )
 
 var Client *ent.Client
 
-func Connect(){
+func Connect() {
 	err := godotenv.Load(".env")
-    
-    if err != nil {
-        log.Fatal("Error loading .env file")
-    }
-	
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	db_host := os.Getenv("DB_HOST")
 	db_user := os.Getenv("DB_USER")
 	db_password := os.Getenv("DB_PASSWORD")
@@ -29,8 +29,9 @@ func Connect(){
 		log.Fatal(err)
 	}
 	//defer Client.Close()
-
-	/*if err := Client.Schema.Create(context.Background()); err != nil {
-		log.Fatalf("failed creating schema resources: %v", err)
-	}*/
+	/*
+		if err := Client.Schema.Create(context.Background()); err != nil {
+			log.Fatalf("failed creating schema resources: %v", err)
+		}
+		*/
 }
