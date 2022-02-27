@@ -32,7 +32,29 @@ func (bh BookHandler) createBook(c *fiber.Ctx) error {
 	book, err := bh.service.CreateBook(payload)
 
 	if err != nil {
-		return err;
+		return err
+	}
+
+	return c.JSON(book)
+}
+
+func (bh BookHandler) updateBook(c *fiber.Ctx) error {
+	payload := models.Book{}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return err
+	}
+
+	uuid, err := uuid.Parse(c.Params("uuid"))
+
+	if err != nil {
+		return err
+	}
+
+	book, err := bh.service.UpdateBook(uuid, payload)
+
+	if err != nil {
+		return err
 	}
 
 	return c.JSON(book)
